@@ -2,51 +2,36 @@ import React from 'react'
 import { Body } from '../components/layout'
 import { ITATable } from '../components/organisms'
 import { Container } from '../styles'
+import { urls } from '../constants'
+import { useFetch } from '../hooks'
 
 const columns = [
   {
-    id: 'name',
-    label: 'Name',
+    id: 'title',
+    label: 'Nombre',
   },
   {
-    id: 'surnames',
-    label: 'Apellidos',
+    id: 'price',
+    label: 'Precio',
   },
   {
-    id: 'age',
-    label: 'Edad',
-    cell: (row) => (
-      <span style={{ color: row.age > 50 ? 'green' : 'red' }}>{row.age}</span>
-    ),
+    id: 'district',
+    label: 'Barrio',
   },
   {
-    id: 'occupation',
-    label: 'Ocupacion',
-  },
-]
-
-const data = [
-  {
-    id: 1,
-    name: 'Juan',
-    surnames: 'Perez',
-    age: 25,
-    occupation: 'Developer',
-  },
-  {
-    id: 2,
-    name: 'Pedro',
-    surnames: 'Gomez',
-    age: 75,
-    occupation: 'Developer',
+    id: 'type',
+    label: 'Tipo vivienda',
   },
 ]
 
 function Data() {
+  const { data, loading, isSuccess } = useFetch(`${urls.houses}`)
+
   return (
     <Body>
       <Container style={{ marginTop: '2rem' }}>
-        <ITATable columns={columns} data={data} />
+        {loading && <div>Loading...</div>}
+        {isSuccess && <ITATable columns={columns} data={data} />}
       </Container>
     </Body>
   )

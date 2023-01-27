@@ -5,8 +5,8 @@ import { colors, dimensions } from '../../styles'
 const { spacing, borderRadius } = dimensions
 
 const ButtonStyled = styled.button`
-  background-color: ${colors.purple};
-  color: white;
+  background-color: ${({ background }) => background || colors.purple};
+  color: ${({ color }) => color || 'white'};
   border-radius: ${borderRadius.base};
   border: 0;
   padding: ${spacing.xs} ${spacing.base};

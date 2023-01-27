@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-function useFetch(url) {
+function useFetch(url, dependencies) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -24,7 +24,7 @@ function useFetch(url) {
       })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url])
+  }, [url, dependencies])
 
   return { data, loading, error, isError: !!error, isSuccess: !!data, hasData }
 }
