@@ -8,8 +8,8 @@ import { TableStyled } from './styles'
 import TableBody from './TableBody'
 import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
-import { FlexBox } from '../../../styles'
-import { Button, Text } from '../../atoms'
+import { FlexBox } from '../../../styles' // Elimina las referencias a componentes de fuera de ITA Table, la idea es que sea un componente que puedas reutilizar facilmente
+import { Button, Text } from '../../atoms' // Elimina las referencias a componentes de fuera de ITA Table, la idea es que sea un componente que puedas reutilizar facilmente
 
 const GapFlexBox = styled(FlexBox)`
   gap: 20px;
@@ -18,6 +18,8 @@ const GapFlexBox = styled(FlexBox)`
 const MarginText = styled(Text)`
   margin: 0;
 `
+
+// Elimina CSVLink, tiene que ser una función creada por ti
 const DownloadBnt = styled(CSVLink)`
   background-color: green;
   padding: 10px;
@@ -52,11 +54,13 @@ function Table({ columns, data, showHeader = true }) {
   )
 }
 
+// Haz el destruct en la declaración de la función. function ITATable({data}) {
 function ITATable(props) {
   const { data } = props
   return (
     <TableProvider>
       <GapFlexBox direction="row" justify="flex-end">
+        {/* Estos botones deben estar fuera de la tabla */}
         <Button background="#3777c4">
           <MarginText color="white">Viviendas</MarginText>
         </Button>
