@@ -30,6 +30,7 @@ function Data() {
   return (
     <Body>
       <Container style={{ marginTop: '2rem' }}>
+        {/* El loading debe gestionarse desde la tabla, no fuera, generando una tabla vacia con X columnas y filas, para parecer que esta cargando, los datos a mostrar un Shimmer */}
         {loading && <div>Loading...</div>}
         {isSuccess && <ITATable columns={columns} data={data} />}
       </Container>
